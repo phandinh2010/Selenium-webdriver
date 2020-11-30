@@ -34,7 +34,7 @@ public class Login_TestCase {
 
 	@Test
 	public void TC_02_with_Invalid_Email() {
-		// Login Page title
+		// Login Page title login testcase
 		//String loginPageTitle = driver.getTitle();
 		//Assert.assertEquals(loginPageTitle, "Guru99 Bank Home Page");
 		driver.findElement(By.xpath("//input[@id='email']")).sendKeys("123@123");

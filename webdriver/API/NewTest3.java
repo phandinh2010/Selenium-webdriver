@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.AfterClass;
 
-public class Topic_02 {
+public class NewTest3 {
   @Test
   public void f() {
   }
@@ -14,8 +14,6 @@ public class Topic_02 {
 
   @AfterClass
   public void afterClass() {
-	  // abc fvđf
-	  //uyuyujhj
   }
 
 }
