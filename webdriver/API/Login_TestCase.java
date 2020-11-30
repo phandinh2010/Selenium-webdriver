@@ -20,7 +20,7 @@ public class Login_TestCase {
 		driver.manage().window().maximize();
 		driver.get("http://live.demoguru99.com/");
 		driver.findElements(By.xpath("//span[@class='label']"));
-		driver.findElement(By.xpath("//a[@title='My Account']"));
+		driver.findElement(By.xpath("//a[@title='My Accouxxxxxxxxxxxxxx']"));
 	}
 
 	@Test
