@@ -26,7 +26,7 @@ public class Login_TestCase {
 	@Test
 	public void TC_01_with_Empty_Username_Password() {
 		driver.findElement(By.xpath("//button[@xpath='1']")).click();
-		//String m = driver.getCurrentUrl();
+		//String m = driver.getCurrentUrl(); abccccccc
 		//Assert.assertEquals(loginPageUrl, "http://demo.guru99.com/v4/");
 		Assert.assertTrue(driver.findElement(By.xpath("//div[@id='advice-required-entry-email']")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.xpath("//div[@id='advice-required-entry-pass']")).isDisplayed());
