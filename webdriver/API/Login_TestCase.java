@@ -55,6 +55,7 @@ public class Login_TestCase {
 
 	@Test
 	public void TC_04_withIncorrectEmailPass() {
+		driver.findElement(By.id("email")).clear();
 		driver.findElement(By.id("email")).sendKeys("automaiton@gmail.com");
 		driver.findElement(By.id("pass")).sendKeys("123123123");
 		driver.findElement(By.name("send")).click();
