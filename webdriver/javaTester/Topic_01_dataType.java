@@ -1,5 +1,7 @@
 package javaTester;
 
+import java.util.List;
+
 public class Topic_01_dataType {
 	
 	public static void main(String[] args) {
@@ -30,14 +32,23 @@ public class Topic_01_dataType {
 		//Boolean giá trị true/false
 		boolean status = true;
 		
-		//2- Kiễu dữ liệu tham chiếu (reference)
+		//2- Kiễu dữ liệu tham chiếu (reference)s
 		  //String/Array/Class/Object/collection
 		String address = "!@#%abc111"; //chứa chữ+số+ kí tự đặc biệt
 		String addreses[] = {"ho chi minh", "ha noi", "nam dinh"};
 		int number[] = {12, 4, 5, 6};
 		//Topic_01_Data_type topic01 = new Topic_01_Data_Type();
 		
-		//List<String> add = new ArrayList<String>(); //collection
+		List<String> address = new ArrayList<String>(); //collection: chứa trung
+				address.add("ha noi");
+		address.add("Ho Chi Minh");
+		address.add("ha noi");
+		address.add("ha noi");
 		
+		Set<String> add = new HashSet<String>(); //collection: không chứa trùng
+		address.add("ha noi");
+		address.add("Ho Chi Minh");
+		address.add("ha noi");
+		address.add("ha noi");
 	}
 }

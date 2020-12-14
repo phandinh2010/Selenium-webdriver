@@ -19,7 +19,7 @@ public class Topic_06_Element_II {
   }
 
   @Test
-  public void verify_elementDisplay() {
+  public void verify_elementDisplay_01() {
 	   //element = driver.findElement(By.xpath("//label[@for='mail']"));
 	  driver.findElement(By.xpath("//label[@for='mail']")).isDisplayed();
 	  driver.findElement(By.xpath("//label[contains(text(),'Age')]")).isDisplayed();
@@ -29,9 +29,6 @@ public class Topic_06_Element_II {
 	  driver.findElement(By.id("mail")).sendKeys("automaiton test Dinh abc xxx");
 	  driver.findElement(By.id("edu")).sendKeys("automaiton test Dinh abc xxx");
 	  driver.findElement(By.id("under_18")).click();
-	  
-	  
-	  
 	  
   }
   
