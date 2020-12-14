@@ -1,5 +1,4 @@
 package API;
-
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -13,7 +12,7 @@ public class Topic_06_Element_II {
 	WebDriver driver;
   
   @BeforeClass
-  public void beforeClass() {	  
+  public void beforeClass() {	
 	  driver = new FirefoxDriver();
 	  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	  driver.get("https://automationfc.github.io/basic-form/index.html");	  
@@ -39,6 +38,7 @@ public class Topic_06_Element_II {
   
   @AfterClass
   public void afterClass() {
+	  driver.quit();
   }
 
 }
