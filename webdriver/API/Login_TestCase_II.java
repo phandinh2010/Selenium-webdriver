@@ -91,7 +91,8 @@ public class Login_TestCase_II {
 
 	@Test
 	public void TC_03_verifyElementSelected() {
-		 driver.get("https://automationfc.github.io/basic-form/index.html");	
+		 driver.get("https://automationfc.github.io/basic-form/index.html");
+		 driver.navigate().refresh();
 		
 		driver.findElement(ageRadioBtn).click();
 		driver.findElement(By.id("java")).click();
