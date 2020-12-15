@@ -19,7 +19,15 @@ public class Login_TestCase_II {
 	By emailTextbox = By.xpath("//input[@id='mail']");
 	By ageRadioBtn = By.xpath("//label[text()='Under 18']");
 	By eduTextbox = By.id("edu");
-	By passTextbox = By.xpath("//input[@id='new_password']");
+	By passTextbox = By.xpath("//input[@placeholder='Textbox is disabled']");
+	By job1Textbox = By.id("job1");
+	By job2Textbox = By.id("job2");
+	By interestsDevelopmentTextbox = By.xpath("//label[@for='development']");
+	By ageRadioBtn2 = By.xpath("//label[@for='radio-disabled']");
+	By bioTextArea = By.id("bio");
+	By javaCheckBox = By.xpath("//label[@for='java']");
+	By pass = By.id("new_password");
+	
 
 	@BeforeClass
 	public void beforeClass() {
@@ -30,11 +38,11 @@ public class Login_TestCase_II {
 		  driver.get("https://automationfc.github.io/basic-form/index.html");	
 	}
 
-	@Test
-	public void TC_01_verify_Element_isDisplay() {
+	//@Test
+	public void TC_01_verify_Element_isDisplayed() {
 		
 		if(driver.findElement(emailTextbox).isDisplayed()) {
-			System.out.print("Element is display");
+			System.out.print("Element is displayed");
 			driver.findElement(emailTextbox).sendKeys("Automation Testing");
 		}else {
 			System.out.print("Element is not display");
@@ -43,7 +51,7 @@ public class Login_TestCase_II {
 		sleepInSecond(3);
 		
 		if(driver.findElement(eduTextbox).isDisplayed()) {
-			System.out.print("Element is display");
+			System.out.print("Element is displayed");
 			driver.findElement(eduTextbox).sendKeys("Automation Testing");
 		}else {
 			System.out.print("Element is not display");
@@ -53,14 +61,14 @@ public class Login_TestCase_II {
 		
 		if(driver.findElement(ageRadioBtn).isDisplayed()) {
 			System.out.print("Element is display");
-			driver.findElement(ageRadioBtn).sendKeys("Automation Testing");
+			driver.findElement(ageRadioBtn).click();
 		}else {
 			System.out.print("Element is not display");
 		}
 		
 	}
 		
-	@Test
+	//@Test
 	public void TC_02_Element_Display() {
 		driver.navigate().refresh();
 		
@@ -81,40 +89,80 @@ public class Login_TestCase_II {
 	
 	public boolean isElementDisplay(By by) {
 		if(driver.findElement(by).isDisplayed()) {
-		System.out.println("Element is displayed");
-		return true;
+			System.out.println("Element is displayed");
+			return true;
 		}	else {
 			System.out.println("Element is not displayed");
 			return false;
 		}
 	}
-
-	@Test
-	public void TC_03_verifyElementSelected() {
-		 driver.get("https://automationfc.github.io/basic-form/index.html");
-		 driver.navigate().refresh();
-		
-		driver.findElement(ageRadioBtn).click();
-		driver.findElement(By.id("java")).click();
-		Assert.assertTrue(driver.findElement(ageRadioBtn).isSelected());
-		Assert.assertTrue(driver.findElement(By.id("java")).isSelected());
-		
-		driver.findElement(By.id("java")).click();
-		Assert.assertFalse(driver.findElement(By.id("java")).isSelected());
+	
+	public boolean isElementEnabled(By by) {
+		if(driver.findElement(by).isEnabled()) {
+			System.out.println("Element is enabled");
+			return true;
+		}	else {
+			System.out.println("Element is not enabled");
+			return false;
+		}
+	}
+	
+	public boolean isElementSelected(By by) {
+		if(driver.findElement(by).isEnabled()) {
+		System.out.println("Element is selected");
+		return true;
+		}	else {
+			System.out.println("Element is not selected");
+			return false;
+		}
 	}
 
 	@Test
-	public void TC_04_mixTestcase() {
+	public void TC_03_verifyElementEnabled() {
+		 driver.get("https://automationfc.github.io/basic-form/index.html");
+		 driver.navigate().refresh();
+		 
+		 Assert.assertTrue(isElementEnabled(emailTextbox));
+		 Assert.assertTrue(isElementEnabled(ageRadioBtn));
+		 Assert.assertTrue(isElementEnabled(eduTextbox));
+		 Assert.assertTrue(isElementEnabled(job1Textbox));
+		 Assert.assertTrue(isElementEnabled(job2Textbox));
+		 Assert.assertTrue(isElementEnabled(interestsDevelopmentTextbox));
+		 
+		Assert.assertFalse(isElementEnabled(passTextbox));
+		 //Assert.assertFalse(isElementEnabled(ageRadioBtn2));
+		 //Assert.assertFalse(isElementEnabled(bioTextArea));		
+	}
+
+	@Test
+	public void TC_04_Element_Selected() {
+		driver.get("https://automationfc.github.io/basic-form/index.html");
+		driver.navigate().refresh();
+		driver.findElement(ageRadioBtn).click();
+		driver.findElement(javaCheckBox).click();
+		
+		sleepInSecond(3);
+		Assert.assertTrue(isElementSelected(ageRadioBtn));
+		Assert.assertTrue(isElementSelected(javaCheckBox));
+	}
+	
+	@Test
+	public void TC_05_Validate_Register_Form() {
+		By signUpBtn = By.id("create-account");
+		By verifyOneNumber = By.xpath("//li[@class='number-char completed']");
+		By verifyOneUppercase = By.xpath("//li[@class='uppercase-char completed']");
 		driver.get("https://login.mailchimp.com/signup/");
 		//WebElement passField = driver.findElement(By.xpath("//input[@id='new_password']"));
 		
-		driver.findElement(passTextbox).sendKeys("123");	
+		driver.findElement(pass).sendKeys("123");	
 		sleepInSecond(2);
-		Assert.assertEquals(driver.findElement(By.xpath("//li[@class='number-char completed']")).getAttribute("color"), "#bdbbb9");
+		Assert.assertFalse(isElementEnabled(signUpBtn));
+		Assert.assertTrue(isElementDisplay(verifyOneNumber));
 		
-		driver.findElement(passTextbox).sendKeys("A");
+		driver.findElement(pass).sendKeys("A");
 		sleepInSecond(2);
-		Assert.assertEquals(driver.findElement(By.xpath("//li[@class='uppercase-char completed']")).getAttribute("color"), "#bdbbb9");
+		Assert.assertTrue(isElementDisplay(verifyOneUppercase));
+		
 	}
 	
 	 public void sleepInSecond (long time) {
@@ -127,7 +175,7 @@ public class Login_TestCase_II {
 	 
 	@AfterClass
 	public void afterClass() {
-		driver.quit();
+		//driver.quit();
 	}
 
 }
