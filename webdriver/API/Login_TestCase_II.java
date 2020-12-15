@@ -16,7 +16,7 @@ public class Login_TestCase_II {
 	WebElement element;
 	String project_location = System.getProperty("user.dir");
 	
-	By emailTextbox = By.id("mail");
+	By emailTextbox = By.xpath("//input[@id='mail']");
 	By ageRadioBtn = By.xpath("//label[text()='Under 18']");
 	By eduTextbox = By.id("edu");
 	By passTextbox = By.xpath("//input[@id='new_password']");
@@ -30,7 +30,7 @@ public class Login_TestCase_II {
 		  driver.get("https://automationfc.github.io/basic-form/index.html");	
 	}
 
-	//@Test
+	@Test
 	public void TC_01_verify_Element_isDisplay() {
 		
 		if(driver.findElement(emailTextbox).isDisplayed()) {
@@ -49,6 +49,7 @@ public class Login_TestCase_II {
 			System.out.print("Element is not display");
 		}
 		
+		sleepInSecond(3);
 		
 		if(driver.findElement(ageRadioBtn).isDisplayed()) {
 			System.out.print("Element is display");
@@ -57,13 +58,40 @@ public class Login_TestCase_II {
 			System.out.print("Element is not display");
 		}
 		
-		sleepInSecond(3);
 	}
 		
+	@Test
+	public void TC_02_Element_Display() {
+		driver.navigate().refresh();
+		
+		if(isElementDisplay(emailTextbox)) {
+			driver.findElement(emailTextbox).sendKeys("automation testing");
+		}
+		
+		if(isElementDisplay(eduTextbox)) {
+			driver.findElement(emailTextbox).sendKeys("automation testing");
+		}
+		
+		if(isElementDisplay(ageRadioBtn)) {
+			driver.findElement(ageRadioBtn).click();
+		}
+	} 
+	
+	
+	
+	public boolean isElementDisplay(By by) {
+		if(driver.findElement(by).isDisplayed()) {
+		System.out.println("Element is displayed");
+		return true;
+		}	else {
+			System.out.println("Element is not displayed");
+			return false;
+		}
+	}
 
-
-	//@Test
+	@Test
 	public void TC_03_verifyElementSelected() {
+		 driver.get("https://automationfc.github.io/basic-form/index.html");	
 		
 		driver.findElement(ageRadioBtn).click();
 		driver.findElement(By.id("java")).click();
@@ -92,7 +120,6 @@ public class Login_TestCase_II {
 		  try {
 			Thread.sleep(time * 1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	  }
