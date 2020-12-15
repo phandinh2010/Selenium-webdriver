@@ -16,19 +16,6 @@ public class Topic_07_08_Exercise {
 	WebElement element;
 	String project_location = System.getProperty("user.dir");
 	
-	By nameLg = By.name("uid");
-	By passLg = By.name("password");
-	By loginBtn = By.name("btnLogin");
-	By newCustomerLink = By.linkText("New Customer");
-	By nameCtm = By.name("name");
-	By birthCtm = By.id("message24");
-	By addressCtm = By.name("addr");
-	By stateCtm = By.name("state");
-	By cityCtm = By.name("city");
-	By PINCtm = By.name("pinno");
-	By phoneCtm = By.name("telephoneno");
-	By emailCtm = By.name("emailid");
-	By passCtm = By.name("password");
 	By submitBtn = By.name("sub");	
 
 	@BeforeClass
@@ -42,23 +29,22 @@ public class Topic_07_08_Exercise {
 
 	@Test
 	public void TC_getInfo_User() {
-		driver.findElement(nameLg).sendKeys("mngr300050");
-		driver.findElement(passLg).sendKeys("YzumerE");
-		driver.findElement(loginBtn).click();		
+		driver.findElement(By.name("uid")).sendKeys("mngr300050");
+		driver.findElement(By.name("password")).sendKeys("YzumerE");
+		driver.findElement(By.name("btnLogin")).click();		
 		Assert.assertEquals(driver.getTitle(), "Guru99 Bank Manager HomePage");
 		
-		driver.findElement(newCustomerLink).click();
-		driver.findElement(nameCtm).sendKeys("Phan Dinh");
-		driver.findElement(birthCtm).click();
-		driver.findElement(birthCtm).sendKeys("10121989");
-		driver.findElement(addressCtm).sendKeys("123 XXX");
-		driver.findElement(cityCtm).sendKeys("Ha Noi");
-		driver.findElement(addressCtm).sendKeys("Ha Noi");
-		driver.findElement(stateCtm).sendKeys("Hai Ba Trung");
-		driver.findElement(PINCtm).sendKeys("123456");
-		driver.findElement(phoneCtm).sendKeys("0988777888");
-		driver.findElement(emailCtm).sendKeys("Dinh@gmail.com");
-		driver.findElement(passCtm).sendKeys("12345678");
+		driver.findElement(By.linkText("New Customer")).click();
+		driver.findElement(By.name("name")).sendKeys("Phan Dinh");
+		driver.findElement(By.id("message24")).click();
+		driver.findElement(By.id("message24")).sendKeys("10121989");
+		driver.findElement(By.name("addr")).sendKeys("123 XXX");
+		driver.findElement(By.name("city")).sendKeys("Ha Noi");
+		driver.findElement(By.name("state")).sendKeys("Hai Ba Trung");
+		driver.findElement(By.name("pinno")).sendKeys("123456");
+		driver.findElement(By.name("telephoneno")).sendKeys("0988777888");
+		driver.findElement(By.name("emailid")).sendKeys("Dinh@gmail.com");
+		driver.findElement(By.name("password")).sendKeys("12345678");
 		driver.findElement(submitBtn).click();
 		
 		//driver.findElement(By.xpath("//td[text()='Customer ID']/following-sibling::td")).getText();
