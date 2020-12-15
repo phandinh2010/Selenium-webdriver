@@ -10,6 +10,9 @@ import org.testng.annotations.Test;
 
 public class Topic_06_Element_II {
 	WebDriver driver;
+	
+	By emailTexboxBy = By.id("email");
+	By passwordTexboxBy = By.id("pass");
   
   @BeforeClass
   public void beforeClass() {	

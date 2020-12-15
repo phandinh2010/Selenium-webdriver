@@ -10,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Login_TestCase {
+public class Login_TestCase_I {
 	WebDriver driver;
 
 	@BeforeClass

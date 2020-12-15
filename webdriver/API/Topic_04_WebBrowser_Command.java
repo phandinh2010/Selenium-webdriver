@@ -48,7 +48,7 @@ public class Topic_04_WebBrowser_Command {
   driver.switchTo().alert();
   driver.switchTo().frame("");
   driver.switchTo().window("");		
-  }
+  	}
   
   @Test
   public void TC_01_Web_Elements() { 
@@ -58,25 +58,4 @@ public class Topic_04_WebBrowser_Command {
   
   String homePageUrl = driver.getCurrentUrl();
   
-  WebElement emailTextbox = driver.findElement(By.xpath(""));
-  emailTextbox.clear();
-  emailTextbox.sendKeys("");
-  emailTextbox.isDisplayed();
-  
-  element.clear();
-  element.sendKeys("");
-  
-  
-  element.getAttribute("placeholder");//lấy ra gia trị của attribute của 1 element đã tìm được
-  element.findElement(By.xpath("")).findElement(By.xpath(""));
-  elements = driver.findElements(By.xpath(""));
-  
-  WebElement subcribeBtn = driver.findElement(By.xpath(""));
-  subcribeBtn.getCssValue("background");
-  
-  }
-  @AfterClass
-  public void afterClass() {
-  }
-
-}
+  WebElement emailTextb                                                                                                                                                                                            
