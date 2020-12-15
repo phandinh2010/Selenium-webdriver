@@ -11,7 +11,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Login_TestCase_II {
+public class Topic_06_Exercise_II {
 	WebDriver driver;
 	WebElement element;
 	String project_location = System.getProperty("user.dir");
