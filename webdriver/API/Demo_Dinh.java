@@ -18,7 +18,7 @@ public class Demo_Dinh {
 	@BeforeClass
 	public void beforeClass() {
 
-		System.setProperty("webdriver.chrome.driver", project_location+ "\\BrowserDriver\\chromedriver.exe");
+		System.setProperty("webdriver.firefox.driver", project_location+ "\\BrowserDriver\\chromedriver.exe");
 		  driver = new ChromeDriver();
 		  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		  driver.get("http://demo.guru99.com/v4/");	

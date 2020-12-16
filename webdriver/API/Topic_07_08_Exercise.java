@@ -35,22 +35,38 @@ public class Topic_07_08_Exercise {
 		Assert.assertEquals(driver.getTitle(), "Guru99 Bank Manager HomePage");
 		
 		driver.findElement(By.linkText("New Customer")).click();
-		driver.findElement(By.name("name")).sendKeys("Phan Dinh");
-		driver.findElement(By.id("message24")).click();
-		driver.findElement(By.id("message24")).sendKeys("10121989");
-		driver.findElement(By.name("addr")).sendKeys("123 XXX");
+		driver.findElement(By.name("name")).sendKeys("PhanDinh");
+		
+		sleepInSecond(3);
+		//driver.findElement(By.id("dob")).click();
+		driver.findElement(By.id("dob")).sendKeys("11/12/1989");
+		driver.findElement(By.name("addr")).sendKeys("123 xxXXX");
 		driver.findElement(By.name("city")).sendKeys("Ha Noi");
 		driver.findElement(By.name("state")).sendKeys("Hai Ba Trung");
-		driver.findElement(By.name("pinno")).sendKeys("123456");
+		driver.findElement(By.name("pinno")).sendKeys("123459");
 		driver.findElement(By.name("telephoneno")).sendKeys("0988777888");
-		driver.findElement(By.name("emailid")).sendKeys("Dinh@gmail.com");
-		driver.findElement(By.name("password")).sendKeys("12345678");
+		driver.findElement(By.name("emailid")).sendKeys("Dinh12@gmail.com");
+		driver.findElement(By.name("password")).sendKeys("123456789");
 		driver.findElement(submitBtn).click();
 		
-		//driver.findElement(By.xpath("//td[text()='Customer ID']/following-sibling::td")).getText();
-		System.out.println(driver.findElement(By.xpath("//td[text()='Customer ID']/following-sibling::td")).getText());
+		String idUser = driver.findElement(By.xpath("//td[text()='Customer ID']/following-sibling::td")).getText();
+		System.out.println("ID user = " + idUser);		
+		//idUser = 3873
+		
+		driver.findElement(By.xpath("//a[text()='Edit Customer']")).click();
+		driver.findElement(By.name("cusid")).sendKeys(idUser);
+		driver.findElement(By.name("AccSubmit")).click();
+		
+		sleepInSecond(3);
+		Assert.assertEquals(driver.findElement(By.name("name")).getAttribute("value"), "PhanDinh");
+		Assert.assertEquals(driver.findElement(By.name("addr")).getAttribute("value"), "123 xxXXX");
+		
 	}
 		
+	@Test
+	public void TC_02_verify_Info_User() {
+		
+	}
 	
 	
 	
@@ -96,7 +112,7 @@ public class Topic_07_08_Exercise {
 	 
 	@AfterClass
 	public void afterClass() {
-		//driver.quit();
+		driver.quit();
 	}
 
 }
