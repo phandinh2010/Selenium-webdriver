@@ -62,13 +62,6 @@ public class Topic_07_08_Exercise {
 		Assert.assertEquals(driver.findElement(By.name("addr")).getAttribute("value"), "123 xxXXX");
 		
 	}
-		
-	@Test
-	public void TC_02_verify_Info_User() {
-		
-	}
-	
-	
 	
 	
 	public boolean isElementDisplay(By by) {
