@@ -16,7 +16,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
-public class Topic_07_08_Dropdown_list {
+public class Topic_07_08_Exercise_Dropdown_Cus {
 	WebDriver driver;
 	WebElement element;
 	Select select;
