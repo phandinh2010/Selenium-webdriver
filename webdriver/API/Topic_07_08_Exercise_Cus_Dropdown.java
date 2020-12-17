@@ -16,7 +16,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
-public class Topic_07_08_Exercise_Dropdown_Cus {
+public class Topic_07_08_Exercise_Cus_Dropdown {
 	WebDriver driver;
 	WebElement element;
 	Select select;
@@ -29,12 +29,13 @@ public class Topic_07_08_Exercise_Dropdown_Cus {
 		System.setProperty("webdriver.chrome.driver", project_location+ "\\BrowserDriver\\chromedriver.exe");
 		  driver = new ChromeDriver();
 		  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		  driver.manage().window().maximize();
 		  driver.get("https://automationfc.github.io/basic-form/index.html");	
 	}
 
 	
 		
-	//@Test
+	@Test
 	public void TC_01_Dropdown_Type1() {
 		select = new Select(driver.findElement(By.id("job1")));
 		Assert.assertFalse(select.isMultiple());	
@@ -58,7 +59,7 @@ public class Topic_07_08_Exercise_Dropdown_Cus {
 		Assert.assertEquals(select.getOptions().size(),10);
 	} 
 	
-	//@Test
+	@Test
 	public void TC_02_Droplist_Type2() {
 		Select select2 = new Select(driver.findElement(By.id("job2")));
 		Assert.assertTrue(select2.isMultiple());
@@ -66,11 +67,12 @@ public class Topic_07_08_Exercise_Dropdown_Cus {
 		String testing[] = {"automation", "mobile", "desktop"};
 		for (String value : testing) {
 			select.selectByValue((value));
-			sleepInSecond(3);
-			
+			sleepInSecond(3);			
 		}
-		
-		
+	
+	}
+	
+	public void selectAllItemdropdown(String parentXpath, String allItemXpath ) {
 		List<WebElement> selectedOption = select.getAllSelectedOptions();
 		Assert.assertEquals(selectedOption.size(), 3);
 		
@@ -83,8 +85,8 @@ public class Topic_07_08_Exercise_Dropdown_Cus {
 		
 		select2.deselectAll();
 		Assert.assertEquals(select.getAllSelectedOptions().size(), 0);
+		
 	}
-	
 	@Test
 	public void TC_03() {
 		driver.get("https://demo.nopcommerce.com/register");
