@@ -61,7 +61,7 @@ public class Topic_07_08_Exercise_Cus_Dropdown {
 	
 	@Test
 	public void TC_02_Droplist_Type2() {
-		Select select2 = new Select(driver.findElement(By.id("job2")));
+		 Select select2 = new Select(driver.findElement(By.id("job2")));
 		Assert.assertTrue(select2.isMultiple());
 		
 		String testing[] = {"automation", "mobile", "desktop"};
@@ -69,10 +69,12 @@ public class Topic_07_08_Exercise_Cus_Dropdown {
 			select.selectByValue((value));
 			sleepInSecond(3);			
 		}
+		select2.deselectAll();
+		Assert.assertEquals(select.getAllSelectedOptions().size(), 0);
 	
 	}
 	
-	public void selectAllItemdropdown(String parentXpath, String allItemXpath ) {
+	public void selectAllItemDropdown(String parentXpath, String allItemXpath ) {
 		List<WebElement> selectedOption = select.getAllSelectedOptions();
 		Assert.assertEquals(selectedOption.size(), 3);
 		
@@ -82,10 +84,6 @@ public class Topic_07_08_Exercise_Cus_Dropdown {
 		}
 		List<String> expectedValues = Arrays.asList("Automation", "Mobile", "Desktop");
 		Assert.assertEquals(actualValues, expectedValues);
-		
-		select2.deselectAll();
-		Assert.assertEquals(select.getAllSelectedOptions().size(), 0);
-		
 	}
 	@Test
 	public void TC_03() {
