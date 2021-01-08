@@ -3,10 +3,11 @@ package API;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -48,7 +49,8 @@ public class Topic_04_WebBrowser_Command {
   driver.switchTo().alert();
   driver.switchTo().frame("");
   driver.switchTo().window("");		
-  	}
+  }
+  
   
   @Test
   public void TC_01_Web_Elements() { 
@@ -57,5 +59,12 @@ public class Topic_04_WebBrowser_Command {
   //kiểu dữ liệu tham chiếu: String, Class, object, Interface, Array, Collection(List/Set), Map
   
   String homePageUrl = driver.getCurrentUrl();
+Assert.assertEquals(homePageUrl, "");
   
-  WebElement emailTextb                                                                                                                                                                                            
+  }    
+  
+  @AfterClass
+  public void after() {
+	  driver.quit();
+  }
+}
