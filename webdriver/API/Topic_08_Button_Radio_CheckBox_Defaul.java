@@ -12,7 +12,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_08_Button_Radio_CheckBox {
+public class Topic_08_Button_Radio_CheckBox_Defaul {
 	WebDriver driver;
 	JavascriptExecutor jsExecutor;
 	String project_location = System.getProperty("user.dir");
@@ -37,30 +37,11 @@ public class Topic_08_Button_Radio_CheckBox {
 
 	@Test
 	public void TC_01_Button() {
-		driver.get("https://www.fahasa.com/customer/account/createhttp://demo.guru99.com/v4/");
-		clickToElement(loginTab);
-		Assert.assertFalse(isElementEnabled(loginBtn));
-		
-		senkeyToElement(email, "testing@gmail.com");
-		senkeyToElement(pass, "1234567");
-		sleepInSecond(2);
-		Assert.assertTrue(isElementEnabled(loginBtn));
-		
-		driver.navigate().refresh();
-		clickToElement(loginTab);		
-		removeDisableAttributeByJS(loginBtn);
-		sleepInSecond(3);
-		clickToElement(loginBtn);
-		Assert.assertEquals(driver.findElement(errorMsgEmail).getText(), "");
-		Assert.assertEquals(driver.findElement(errorMsgPass), "");
 		
 
 	}
 
 	public void TC_02_defaulChecbox() {
-		driver.get("http://demos.telerik.com/kendo-ui/styling/checkboxes");
-		clickToElement(By.cssSelector("#eq5"));
-		sleepInSecond(1);
 		
 		
 	}
