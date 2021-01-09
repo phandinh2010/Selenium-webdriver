@@ -1,6 +1,7 @@
 package API;
 
-import java.awt.List;
+
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -16,6 +17,7 @@ import org.testng.annotations.Test;
 public class Topic_07_Cus_Dropdown {
 	WebDriver driver;
 	WebDriverWait expicitWait;
+	//WebElement element;
 	String project_location = System.getProperty("user.dir");
 
 	@BeforeClass
@@ -26,11 +28,12 @@ public class Topic_07_Cus_Dropdown {
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-		driver.get("https://jqueryui.com/resources/demos/selectmenu/default.html");
+		
 	}
 
 	@Test
 	public void TC_01() {
+		driver.get("https://jqueryui.com/resources/demos/selectmenu/default.html");
 		selectItemCusDropdown("//span[@id='number-button']", "//ul[@id='number-menu']/li");
 	}
 
@@ -40,8 +43,14 @@ public class Topic_07_Cus_Dropdown {
 		//chờ để load tât cả các item trong droplist
 		expicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(allItemXpath)));
 		
-		//Luu lại vào 1 list WebEelement
-		List<WebElement> allItems = driver.findElement(By.xpath(allItemXpath));
+		//Lưu lại thành 1 list
+		List<WebElement> allItems = driver.findElements(By.xpath(allItemXpath));
+		
+		//Duyệt qua từng thành phần lấy text
+		
+		for (int i = 0; i < array.length; i++) {
+			
+		}
 	}
 
 	public void sleepInSecond(long time) {
