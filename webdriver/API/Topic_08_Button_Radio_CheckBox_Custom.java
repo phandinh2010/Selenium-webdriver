@@ -16,10 +16,10 @@ public class Topic_08_Button_Radio_CheckBox_Custom {
 	WebDriver driver;
 	JavascriptExecutor jsExecutor;
 	String project_location = System.getProperty("user.dir");
-	By loginTab = By.xpath("//li[@class='popup-login-tab-item popup-login-tab-register active']/preceding-sibling::li");
-	By email = By.cssSelector("#login_username");
-	By pass = By.cssSelector("#login_password");
-	By loginBtn = By.xpath("//button[@class='fhs-btn-login']");
+	By loginTab = By.cssSelector("");
+	By email = By.xpath("");
+	By pass = By.xpath("");
+	By loginBtn = By.xpath("");
 	By errorMsgEmail = By.xpath("");
 	By errorMsgPass = By.xpath("");
 	
@@ -37,30 +37,11 @@ public class Topic_08_Button_Radio_CheckBox_Custom {
 
 	@Test
 	public void TC_01_Button() {
-		driver.get("https://www.fahasa.com/customer/account/create?attempt=1");
-		clickToElement(loginTab);
-		Assert.assertFalse(isElementEnabled(loginBtn));
-		
-		senkeyToElement(email, "testing@gmail.com");
-		senkeyToElement(pass, "1234567");
-		sleepInSecond(2);
-		Assert.assertTrue(isElementEnabled(loginBtn));
-		
-		driver.navigate().refresh();
-		clickToElement(loginTab);		
-		removeDisableAttributeByJS(loginBtn);
-		sleepInSecond(3);
-		clickToElement(loginBtn);
-		Assert.assertEquals(driver.findElement(errorMsgEmail).getText(), "");
-		Assert.assertEquals(driver.findElement(errorMsgPass), "");
-		
+		driver.get("https://www.fahasa.com/customer/account/create");
 
 	}
 
 	public void TC_02_defaulChecbox() {
-		driver.get("http://demos.telerik.com/kendo-ui/styling/checkboxes");
-		clickToElement(By.cssSelector("#eq5"));
-		sleepInSecond(1);
 		
 		
 	}
