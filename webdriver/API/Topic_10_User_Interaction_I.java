@@ -1,12 +1,17 @@
 package API;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -38,10 +43,10 @@ public class Topic_10_User_Interaction_I {
 	//@Test
 	public void TC_01_Hover_Mouse() {
 		driver.get("https://tiki.vn/");
-		Assert.assertFalse(driver.findElement(By.xpath("//button[text()='Đăng nhập']")).isDisplayed());
+		Assert.assertFalse(driver.findElement(By.xpath("//button[text()='Ä�Äƒng nháº­p']")).isDisplayed());
 		WebElement shortCutAcc = driver.findElement(By.xpath("//div[@data-view-id='header_header_account_container']"));
 		action.moveToElement(shortCutAcc).perform();
-		Assert.assertTrue(driver.findElement(By.xpath("//button[text()='Đăng nhập']")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.xpath("//button[text()='Ä�Äƒng nháº­p']")).isDisplayed());
 		sleepInSecond(2);
 		
 		driver.get("https://jqueryui.com/resources/demos/tooltip/default.html");
@@ -74,7 +79,7 @@ public class Topic_10_User_Interaction_I {
 		driver.get("http://jqueryui.com/resources/demos/selectable/display-grid.html");
 		List<WebElement> listItems = driver.findElements(By.xpath("//ol[@id='selectable']/li"));
 		
-		//1. chọn hàng loạt
+		//1. chá»�n hÃ ng loáº¡t
 		action.clickAndHold(listItems.get(0)).moveToElement(listItems.get(3)).release().perform();
 		sleepInSecond(3);
 		
@@ -83,9 +88,9 @@ public class Topic_10_User_Interaction_I {
 	
 	Assert.assertEquals(numberSelected.size(),4);
 	
-	//2.chọn từng số
+	//2.chá»�n tá»«ng sá»‘
 	
-	//Nhấn phím Ctrl xuống
+	//Nháº¥n phÃ­m Ctrl xuá»‘ng
 	action.keyDown(Keys.CONTROL).perform();
 	
 	action.click(listItems.get(0)).
@@ -93,7 +98,7 @@ public class Topic_10_User_Interaction_I {
 	click(listItems.get(4)).
 	click(listItems.get(6));
 	
-	//Nhả phím Ctrl ra
+	//Nháº£ phÃ­m Ctrl ra
 	action.keyUp(Keys.CONTROL).perform();
 	sleepInSecond(2);
 	}
@@ -109,7 +114,7 @@ public class Topic_10_User_Interaction_I {
 		
 	}
 	
-	@Test
+	//@Test
 	public void TC_06_rightClick() {
 		driver.get("http://swisnl.github.io/jQuery-contextMenu/demo.html");
 		driver.manage().window().maximize();
@@ -117,10 +122,59 @@ public class Topic_10_User_Interaction_I {
 		action.contextClick(element).perform();
 		sleepInSecond(2);
 		
-		action.moveToElement(driver.findElement(By.xpath("//span[text()='Quit']"))).perform();
-		Assert.assertEquals(driver.findElement(By.xpath("//p[@id='demo']")).getText(), "Hello Automation Guys!");
+		Assert.assertTrue(driver.findElement(By.xpath("//li[contains(@class,'context-menu-icon-quit')"
+				+ "and not(contains(@class,'context-menu-hover')) and not(contains(@class,'context-menu-visible'))]")).isDisplayed());
+		
+		//hover vao Quit
+		action.moveToElement(driver.findElement(By.xpath("//li[contains(@class,'context-menu-icon-quit')"
+				+ " and not(contains(@class,'context-menu-hover')) and not(contains(@class,'context-menu-visible'))]"))).perform();
+		
+		//verify Quit chuaws thuoc tinh visible va hover status
+		Assert.assertTrue(driver.findElement(By.xpath("//li[contains(@class,'context-menu-icon-quit') "
+				+ "and (contains(@class,'context-menu-hover')) and (contains(@class,'context-menu-visible'))]")).isDisplayed());
+		//click to Quit
+		
+		clickToElement(By.xpath("//li[contains(@class,'context-menu-icon-quit') "
+				+ "and not(contains(@class,'context-menu-hover')) and not(contains(@class,'context-menu-visible'))]"));
+		
+		//accept alert
+		driver.switchTo().alert().accept();
 		
 	}
+	
+	@Test
+	public void TC_08_dragDropHTML4() {
+		driver.get("https://demos.telerik.com/kendo-ui/dragdrop/index");
+		sleepInSecond(2);
+		driver.findElement(By.cssSelector("#onetrust-accept-btn-handler")).click();
+		WebElement elmSource = driver.findElement(By.cssSelector("#.draggable"));
+		WebElement elmTarget = driver.findElement(By.cssSelector("#.droptarget"));
+		
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", elmSource);
+		action.dragAndDrop(elmSource, elmTarget);
+		sleepInSecond(2);		
+		Assert.assertEquals(driver.findElement(By.cssSelector("#droptarget")).getText(), "You did great!");	
+		
+	}
+	
+	//@Test
+	public void TC_08_dragDropHTML5() throws AWTException {
+		driver.get("https://automationfc.github.io/drag-drop-html5/");
+		sleepInSecond(2);
+		
+		//A to B
+		drag_the_and_drop_html5_by_Offset("//div[@id='column-a']", "//div[@id='column-b']");
+		sleepInSecond(2);
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@id='column-a']/header[text()='B']")).isDisplayed());	
+		
+		//B to A
+		drag_the_and_drop_html5_by_Offset("//div[@id='column-a']", "//div[@id='column-b']");
+		sleepInSecond(2);
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@id='column-a']/header[text()='A']")).isDisplayed());	
+		
+	}
+	
+	
 	
 	public void clickToElement(By by) {
 		WebElement element = driver.findElement(by);
@@ -136,7 +190,52 @@ public class Topic_10_User_Interaction_I {
 		}
 	}
 
-	
+	public void drag_the_and_drop_html5_by_Offset(String sourceLocator, String targetLocator) throws AWTException {
+
+		WebElement source = driver.findElement(By.xpath(sourceLocator));
+		WebElement target = driver.findElement(By.xpath(targetLocator));
+
+		// Setup robot
+		Robot robot = new Robot();
+		robot.setAutoDelay(500);
+
+		// Get size of elements
+		Dimension sourceSize = source.getSize();
+		Dimension targetSize = target.getSize();
+
+		// Get center distance
+		int xCentreSource = sourceSize.width / 2;
+		int yCentreSource = sourceSize.height / 2;
+		int xCentreTarget = targetSize.width / 2;
+		int yCentreTarget = targetSize.height / 2;
+
+		Point sourceLocation = source.getLocation();
+		Point targetLocation = target.getLocation();
+		System.out.println(sourceLocation.toString());
+		System.out.println(targetLocation.toString());
+
+		// Make Mouse coordinate center of element
+		sourceLocation.x += 20 + xCentreSource;
+		sourceLocation.y += 110 + yCentreSource;
+		targetLocation.x += 20 + xCentreTarget;
+		targetLocation.y += 110 + yCentreTarget;
+
+		//System.out.println(sourceLocation.toString());
+		//System.out.println(targetLocation.toString());
+
+		// Move mouse to drag from location
+		robot.mouseMove(sourceLocation.x, sourceLocation.y);
+
+		// Click and drag
+		robot.mousePress(InputEvent.BUTTON1_MASK);
+		robot.mouseMove(((sourceLocation.x - targetLocation.x) / 2) + targetLocation.x, ((sourceLocation.y - targetLocation.y) / 2) + targetLocation.y);
+
+		// Move to final position
+		robot.mouseMove(targetLocation.x, targetLocation.y);
+
+		// Drop
+		robot.mouseRelease(InputEvent.BUTTON1_MASK);
+	}
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
