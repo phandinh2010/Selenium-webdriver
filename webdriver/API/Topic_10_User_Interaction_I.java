@@ -150,7 +150,10 @@ public class Topic_10_User_Interaction_I {
 		WebElement elmSource = driver.findElement(By.cssSelector("#.draggable"));
 		WebElement elmTarget = driver.findElement(By.cssSelector("#.droptarget"));
 		
-		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", elmSource);
+		WebElement elmToScroll = driver.findElement(By.cssSelector("#.kd-example-runner tabstrip-container"));
+		
+		
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", elmToScroll);
 		action.dragAndDrop(elmSource, elmTarget);
 		sleepInSecond(2);		
 		Assert.assertEquals(driver.findElement(By.cssSelector("#droptarget")).getText(), "You did great!");	

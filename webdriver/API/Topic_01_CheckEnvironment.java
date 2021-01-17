@@ -2,6 +2,8 @@ package API;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
@@ -18,6 +20,9 @@ public class Topic_01_CheckEnvironment {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.get("http://demo.guru99.com/v4/");
+		//co the set vij tri hien browser
+		driver.manage().window().setPosition(new Point(0,0));
+		driver.manage().window().setSize(new Dimension(1366,768));
 	}
 
 	@Test
