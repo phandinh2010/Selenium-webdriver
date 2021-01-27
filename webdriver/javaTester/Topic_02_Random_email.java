@@ -15,5 +15,10 @@ public class Topic_02_Random_email {
 		System.out.println("autotesting" + rand.nextInt(999999) + "@gmail.com");
 		System.out.println("autotesting" + rand.nextInt(999999) + "@live.com");
 	}
+	
+	public String generateEmail() {
+		Random rand = new Random();
+		return "testing" + rand.nextInt(9999) + "@gmail.com";
+	}
 
 }
