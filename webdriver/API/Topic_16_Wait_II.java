@@ -20,10 +20,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_17_Wait_II {
+public class Topic_16_Wait_II {
 	WebDriver driver;
 	Alert alert;
-	WebDriverWait explicitWait;
 	JavascriptExecutor jsExecutor;
 	Actions action;
 	String project_location = System.getProperty("user.dir");
@@ -34,6 +33,7 @@ public class Topic_17_Wait_II {
 		driver = new ChromeDriver();
 		
 		//Chạy 1 lần duy nhất trước khi bắt đầu run testcase, áp dụng cho tất cả hàm FindElement
+		//implicitlyWait: chờ ngầm định
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		
 	}
