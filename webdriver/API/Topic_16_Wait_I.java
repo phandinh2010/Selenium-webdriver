@@ -35,45 +35,79 @@ public class Topic_16_Wait_I {
 		explicitWait = new WebDriverWait(driver, 30);
 		jsExecutor = (JavascriptExecutor) driver;
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-		action = new Actions(driver);
-	}
-
-	//@Test
-	public void TC_01_Iframe() {
-		driver.get("https://kyna.vn/");
 		driver.manage().window().maximize();
-		
-		//explicitWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("//iframe[contains(@src,'//www.facebook.com')]")));
-				//WebElement elmIframeFB = driver.findElement(By.xpath("//iframe[contains(@src,'//www.facebook.com')]"));
-		//Assert.assertTrue(driver.findElement(By.xpath("//iframe[contains(@src,'//www.facebook.com')]")).isDisplayed());
-		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'//www.facebook.com')]")));
-		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='_1drq']")).getText(), "169K likes");
-
-		//WebElement elmIframeChat = driver.findElement(By.xpath("//iframe[@id='cs_chat_iframe']"));
-		//Assert.assertTrue(elmIframeChat.isDisplayed());
-		// driver.switchTo().frame("cs_chat_iframe]");
-		// driver.findElement(By.xpath("//textarea[@ng-model='chatMessage.content']")).sendKeys("Automation");
-		// driver.findElement(By.xpath("//textarea[@ng-model='chatMessage.content']")).sendKeys(Keys.ENTER);
-		// Assert.assertTrue(driver.findElement(By.xpath("")).isDisplayed());
-		 
-
-		driver.switchTo().defaultContent();
-		driver.findElement(By.cssSelector("#navDesktop .live-search-bar")).sendKeys("Excel");
-		clickToElement(By.cssSelector(".search-button"));
-		sleepInSecond(2);
-
-		List<WebElement> elmName = driver.findElements(By.xpath("//div[@class='content']//h4"));
-
-		List<String> nameResuilt = new ArrayList<String>();
-		for (WebElement resuilt : elmName) {
-			System.out.println(resuilt.getText());
-			nameResuilt.add(resuilt.getText());
-		}
-		for (String courseName : nameResuilt) {
-			Assert.assertTrue(courseName.contains("Excel"));
-		}
 	}
+
+	@Test
+	public void TC_01_Displayed_Visible() {
+		driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+		
+		//wait cho element hiển thị/visible
+		//có hiện thị trong DOM và UI		
+		explicitWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("email")));
+	}
+	
+	
+	@Test
+	public void TC_02_Undisplayed_Invisible_In_DOM() {
+		driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+		
+		//wait cho element không hiển thị Undisplay/Invisible
+		//Không hiện thị UI nhưng có trong DOM	
+		//Có sẵn trong DOm, tìm thấy luôn, pass đk luôn không cần chờ timeout
+		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("email")));
+	}
+	
+	@Test
+	public void TC_03_Undisplayed_Invisible_Out_DOM() {
+		driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+		
+		//wait cho element không hiển thị Undisplay/Invisible
+		//Không hiện thị UI và không có trong DOM	
+		//Không tìm thấy elemennt, tìm đi tìm lại cho hết timeout của implicit -->30s.
+		//sau đó mới apply điều kiện cảu explicit vào invisibility
+		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("")));
+	}
+	
+	@Test
+	public void TC_04_Presence() {
+		driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
+		
+		//wait cho element có trong DOM
+		//Có trong DOM và có hiện trên UI = visible TC_01
+		//Có trong DOM và kHông hiện trên UI =TC_02
+		//presence: khong quan tâm có trên Ui hay không, chỉ cần có trong DOM
+		explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("")));
+	}
+	
+	@Test
+	public void TC_05_Clickable() {
+		
+		//Apply: btn, radio, checkbox,dropdown  -->Stable trước khi thao tác
+		//exp: login form: điền username, pass. chờ cho button Login enable rồi mới click
+		driver.get("https://login.mailchimp.com/");
+		driver.findElement(By.id("email")).sendKeys("Dinh@gmail.com");
+		driver.findElement(By.id("password")).sendKeys("Dinh");
+		
+		explicitWait.until(ExpectedConditions.elementToBeClickable(By.id("login")));
+		driver.findElement(By.id("login")).click();
+	}
+	
+	@Test
+	public void TC_06_Staleness() {
+		
+		//Wait cho 1 element Stalenss không có/còn ở trong DOM
+		//Exp: Thao tác với 1 element để xuất hiện error msg
+		//Thao tác tiếp để error không còn xuất hiện -->cần chờ để error msg không còn có trong DOM
+		driver.get("https://login.mailchimp.com/");
+		driver.findElement(By.id("email")).sendKeys("Dinh@gmail.com");
+		driver.findElement(By.id("password")).sendKeys("Dinh");
+		
+		explicitWait.until(ExpectedConditions.elementToBeClickable(By.id("login")));
+		driver.findElement(By.id("login")).click();
+	}
+	
+	
 
 		
 	
