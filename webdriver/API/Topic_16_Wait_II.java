@@ -31,44 +31,45 @@ public class Topic_16_Wait_II {
 	public void beforeClass() {
 		System.setProperty("webdriver.chrome.driver", project_location + "\\BrowserDriver\\chromedriver.exe");
 		driver = new ChromeDriver();
-		
-		//Chạy 1 lần duy nhất trước khi bắt đầu run testcase, áp dụng cho tất cả hàm FindElement
-		//implicitlyWait: chờ ngầm định
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		
+
+		// Chạy 1 lần duy nhất trước khi bắt đầu run testcase, áp dụng cho tất cả hàm
+		// FindElement
+		// implicitlyWait: chờ ngầm định
+		// driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
 	}
 
 	@Test
-	public void TC_01() {
-		driver.get("");
+	public void TC_031_implicitWait() {
+		driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		driver.findElement(By.xpath("")).click();
-		
-		//-->fail: timeout =3 <loading =5s
-	}
-	
-	@Test
-	public void TC_02() {
-		driver.get("");
-		driver.findElement(By.xpath("")).click();
-		//-->fail: timeout =3 <loading =5s. do overide timemout set ở before
-	}
-	
-	
-	@Test
-	public void TC_03() {
-		driver.get("");
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		driver.findElement(By.xpath("")).click();
-		//-->pas: timeout =15 >loading =5s. do overide timemout set ở before, hiện đang nhận giá trị =15
-	}
-	
-	
-	
-	
+		driver.findElement(By.xpath("//div[@id='start']/button")).click();
+		Assert.assertEquals(driver.findElement(By.xpath("//div[@id='finish']/h4")).getText(), "Hello World!");
 
-		
-	
+		// -->fail: timeout =3 <loading =5s
+	}
+
+	@Test
+	public void TC_032() {
+		driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
+
+		driver.findElement(By.xpath("//div[@id='start']/button")).click();
+		Assert.assertEquals(driver.findElement(By.xpath("//div[@id='finish']/h4")).getText(), "Hello World!");
+
+		// -->fail: timeout =3 <loading =5s. do overide timemout set ở before
+	}
+
+	@Test
+	public void TC_033() {
+		driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		driver.findElement(By.xpath("//div[@id='start']/button")).click();
+		Assert.assertEquals(driver.findElement(By.xpath("//div[@id='finish']/h4")).getText(), "Hello World!");
+
+		// -->pas: timeout =15 >loading =5s. do overide timemout set ở before, hiện đang
+		// nhận giá trị =15
+	}
+
 	public void clickToElement(By by) {
 		WebElement element = driver.findElement(by);
 		element.click();

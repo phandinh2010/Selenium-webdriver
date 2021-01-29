@@ -41,40 +41,11 @@ public class Topic_15_Upload_File {
 
 	//@Test
 	public void TC_01_Iframe() {
-		driver.get("https://kyna.vn/");
+		driver.get("http://blueimp.github.io/jQuery-File-Upload/");
 		driver.manage().window().maximize();
+		driver.findElement(By.xpath("//input[@type='file']")).sendKeys(project_location + "");
 		
-		//explicitWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("//iframe[contains(@src,'//www.facebook.com')]")));
-				//WebElement elmIframeFB = driver.findElement(By.xpath("//iframe[contains(@src,'//www.facebook.com')]"));
-		//Assert.assertTrue(driver.findElement(By.xpath("//iframe[contains(@src,'//www.facebook.com')]")).isDisplayed());
-		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'//www.facebook.com')]")));
-		Assert.assertEquals(driver.findElement(By.xpath("//div[@class='_1drq']")).getText(), "169K likes");
-
-		//WebElement elmIframeChat = driver.findElement(By.xpath("//iframe[@id='cs_chat_iframe']"));
-		//Assert.assertTrue(elmIframeChat.isDisplayed());
-		// driver.switchTo().frame("cs_chat_iframe]");
-		// driver.findElement(By.xpath("//textarea[@ng-model='chatMessage.content']")).sendKeys("Automation");
-		// driver.findElement(By.xpath("//textarea[@ng-model='chatMessage.content']")).sendKeys(Keys.ENTER);
-		// Assert.assertTrue(driver.findElement(By.xpath("")).isDisplayed());
-		 
-
-		driver.switchTo().defaultContent();
-		driver.findElement(By.cssSelector("#navDesktop .live-search-bar")).sendKeys("Excel");
-		clickToElement(By.cssSelector(".search-button"));
-		sleepInSecond(2);
-
-		List<WebElement> elmName = driver.findElements(By.xpath("//div[@class='content']//h4"));
-
-		List<String> nameResuilt = new ArrayList<String>();
-		for (WebElement resuilt : elmName) {
-			System.out.println(resuilt.getText());
-			nameResuilt.add(resuilt.getText());
-		}
-		for (String courseName : nameResuilt) {
-			Assert.assertTrue(courseName.contains("Excel"));
-		}
 	}
-
 		
 	
 	public void clickToElement(By by) {
