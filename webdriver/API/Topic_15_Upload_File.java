@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -35,17 +36,43 @@ public class Topic_15_Upload_File {
 		explicitWait = new WebDriverWait(driver, 30);
 		jsExecutor = (JavascriptExecutor) driver;
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-		action = new Actions(driver);
 	}
 
 	//@Test
-	public void TC_01_Iframe() {
+	public void TC_01_Upload_multiFiles() {
 		driver.get("http://blueimp.github.io/jQuery-File-Upload/");
 		driver.manage().window().maximize();
-		driver.findElement(By.xpath("//input[@type='file']")).sendKeys(project_location + "");
+		
+		WebElement uploadFiles = driver.findElement(By.xpath("//input[@type='file']"));
+		uploadFiles.sendKeys(project_location +"\\UploadFiles\\DInh2.jpg" + "\n" + project_location +"\\UploadFiles\\Dinh3.jpg"
+		+ "\n" + project_location +"\\UploadFiles\\cade-prior-qzv0os5eIJQ-unsplash.jpg");
+		
+		explicitWait.until(ExpectedConditions.visibilityOfAllElements(driver.findElements(By.xpath("//button[@class='btn btn-primary start']  [not(@type='submit')]"))));
+		List<WebElement> uploadBtnList= driver.findElements(By.xpath("//button[@class='btn btn-primary start']  [not(@type='submit')]"));
+		
+		for (WebElement uploadBtn : uploadBtnList) {
+			uploadBtn.click();			
+		}
+		
+		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='progress progress-striped active']")));
+		List<WebElement> uploadSuccess = driver.findElements(By.xpath("//p[@class='name']/a[contains(@href,\"http\")]"));
+		System.out.println(uploadSuccess.size());
+		Assert.assertEquals(uploadSuccess.size(), 3);	
 		
 	}
+	
+	
+	@Test
+	public void TC_02_Upload_ByAutoIT() {
+				
+		driver.get("http://blueimp.github.com/jQuery-File-Upload/");
+		
+		
+		
+		
+	}
+	
+	
 		
 	
 	public void clickToElement(By by) {
