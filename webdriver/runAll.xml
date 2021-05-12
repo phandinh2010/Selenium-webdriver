@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<suite name="Tiki" parallel="tests" thread-count ="3">
+
+<listeners>
+	<listener class-name="testNG./ReportListener" />
+</listeners>
+
+
+		<suite-files>
+			<suite-files path="runOnAPI"/>
+			<suite-files path="runOnMobile"/>
+		</suite-files>	
+	
+</suite>
